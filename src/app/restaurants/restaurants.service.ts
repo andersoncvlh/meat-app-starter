@@ -1,31 +1,19 @@
+import { MEAT_APP } from './../app.api';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 import { Restaurant } from './restaurant/restaurant.model';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class RestaurantsService {
 
-  constructor() { }
+  constructor(private http: Http) {}
 
-  restaurants(): Restaurant[] {
-    return [
-      {
-        id: '1',
-        name: 'Bread & Bakery',
-        category: 'Bakery',
-        deliveryEstimate: '25min',
-        imagePath: 'assets/img/restaurants/breadbakery.png',
-        rating: 4.5
-      },
-      {
-        id: '2',
-        name: 'Burger House',
-        category: 'Hamburguers',
-        deliveryEstimate: '100min',
-        imagePath: 'assets/img/restaurants/burgerhouse.png',
-        rating: 4.5
-      }
-    ];
+  restaurants(): Observable<Restaurant[]> {
+    return this.http.get(`${MEAT_APP}/restaurants`)
+      .map(response => response.json());
   }
 
 }
