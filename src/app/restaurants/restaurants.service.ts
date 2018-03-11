@@ -1,3 +1,4 @@
+import { MenuItem } from './restaurant-detail/menu/menu-item/menu-item.model';
 import { MEAT_APP } from './../app.api';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -27,6 +28,12 @@ export class RestaurantsService {
 
   reviewsOfRestaurant(id: string): Observable<any> {
     return this.http.get(`${MEAT_APP}/restaurants/${id}/reviews`)
+      .map(response => response.json())
+      .catch(ErrorHandler.handleError);
+  }
+
+  menuOfRestaurant(id: string): Observable<MenuItem[]> {
+    return this.http.get(`${MEAT_APP}/restaurants/${id}/menu`)
       .map(response => response.json())
       .catch(ErrorHandler.handleError);
   }
