@@ -6,8 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'mt-reviews',
-  templateUrl: './reviews.component.html',
-  styleUrls: ['./reviews.component.css']
+  templateUrl: './reviews.component.html'
 })
 export class ReviewsComponent implements OnInit {
 
