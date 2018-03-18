@@ -370,5 +370,19 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "rua22",
+      "number": "1",
+      "optionalAddress": "",
+      "paymentOption": "MON",
+      "items": [
+        {
+          "quantity": 2,
+          "menuId": "cup-cake"
+        }
+      ],
+      "id": 1
+    }
+  ]
 }
