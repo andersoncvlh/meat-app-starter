@@ -10,6 +10,10 @@ import { Order } from './order.model';
 import { MEAT_APP } from './../app.api';
 import { ErrorHandler } from './../app.error-hander';
 
+/**
+ * @author Anderson C. Martins
+ * responsible for order flow
+ */
 @Injectable()
 export class OrderService {
 
@@ -43,9 +47,9 @@ export class OrderService {
 
   /**
    * @param order
-   * @returns ID
+   * @returns new order
    */
-  checkOrder(order: Order): Observable<string> {
+  checkOrder(order: Order): Observable<Order> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post(`${MEAT_APP}/orders`,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { RadioOption } from '../shared/radio/radio-optional.model';
 import { OrderService } from './order.service';
@@ -20,7 +21,10 @@ export class OrderComponent implements OnInit {
     {label: 'Cartão de Refeição', value: 'REF'}
   ];
 
-  constructor(private orderService: OrderService) { }
+  constructor(
+    private orderService: OrderService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -45,14 +49,14 @@ export class OrderComponent implements OnInit {
     this.orderService.remove(item);
   }
 
-  checkOrder(order: Order) {
+  checkOrder(order: Order): void {
     order.items = this.cartItems()
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id) );
-    this.orderService.checkOrder(order).subscribe((orderId: string) => {
-      console.log(orderId);
+
+    this.orderService.checkOrder(order).subscribe((newOrder: Order) => {
       this.orderService.clear();
+      this.router.navigate(['/order-summary']);
     });
-    console.log(order);
   }
 
 }
